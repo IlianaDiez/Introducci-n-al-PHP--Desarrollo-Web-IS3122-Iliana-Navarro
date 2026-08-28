@@ -2,8 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Conversión de Pulgadas a Centímetros</title>
-
+    <title>Área y Perímetro de un Círculo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -40,32 +39,34 @@
 </head>
 <body>
 
-    <h2>Conversión de Pulgadas a Centímetros</h2>
+    <h2>Área y perímetro de un círculo</h2>
 
-    //Formulario
+    <!-- Formulario para ingresar el radio -->
     <form method="post" action="">
-        <label>Ingrese las pulgadas:</label>
-        <input type="number" step="any" name="pulgadas" required min="0">
+        <label>Ingrese el radio del círculo:</label>
+        <input type="number" step="any" name="radio" required min="0.01">
         <input type="submit" value="Calcular">
     </form>
 
     <?php
-    // Procesamiento en PHP
+    // Se ejecuta solo al enviar el formulario por POST
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-        // Constante del factor de conversión
-        define("CM_POR_PULGADA", 2.54);
+        // Definimos PI como constante
+        define("PI", 3.14159265359);
 
-        // Obtener valor del formulario
-        $pulgadas = $_POST['pulgadas'];
+        // Obtenemos el radio del formulario
+        $radio = $_POST['radio'];
 
-        // Cálculo
-        $centimetros = $pulgadas * CM_POR_PULGADA;
+        // Fórmulas de área y perímetro
+        $area = PI * ($radio ** 2);
+        $perimetro = 2 * PI * $radio;
 
         // Impresión con la clase CSS .resultado
         echo "<div class='resultado'>";
-        echo "<strong>Resultado:</strong><br>";
-        echo "$pulgadas pulgadas equivalen a " . round($centimetros, 2) . " cm";
+        echo "<strong>Resultados para un radio de $radio:</strong><br>";
+        echo "Área = " . round($area, 2) . "<br>";
+        echo "Perímetro = " . round($perimetro, 2);
         echo "</div>";
     }
     ?>
