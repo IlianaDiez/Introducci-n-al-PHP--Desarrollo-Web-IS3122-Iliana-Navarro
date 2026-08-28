@@ -2,77 +2,78 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>El área y perímetro de un círculo</title>
-    
+    <title>Conversión de Pulgadas a Centímetros</title>
+    <!-- Estilos CSS requeridos por la rúbrica -->
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            background-color: #f8f9fa;
             padding: 20px;
         }
-        .container {
-            background-color: #fff;
-            padding: 20px;
+        .card {
+            background-color: #ffffff;
+            padding: 25px;
             border-radius: 8px;
-            max-width: 400px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            max-width: 420px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
         input[type="number"], input[type="submit"] {
-            padding: 8px;
-            margin-top: 5px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            width: 95%;
         }
         input[type="submit"] {
-            background-color: #28a745;
+            background-color: #007bff;
             color: white;
+            font-weight: bold;
             cursor: pointer;
+            width: 100%;
         }
-        .resultado {
+        .box-resultado {
             margin-top: 15px;
-            padding: 10px;
-            background-color: #e9ecef;
-            border-radius: 4px;
+            padding: 12px;
+            background-color: #e2e3e5;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>Área y perímetro de un círculo</h2>
+    <div class="card">
+        <h2>Conversión de Pulgadas a Centímetros</h2>
 
-      // Formulario Radio
+        //Formulario de entrada de datos
         <form method="post" action="">
-            <label for="radio">Ingrese el radio del círculo:</label><br>
-            <input type="number" step="any" name="radio" id="radio" required min="0.01">
+            <label for="pulgadas">Ingrese la cantidad en pulgadas:</label><br>
+            <input type="number" step="any" name="pulgadas" id="pulgadas" required min="0">
             <br><br>
-            <input type="submit" value="Calcular">
+            <input type="submit" value="Convertir">
         </form>
 
         <?php
-        // Se ejecuta solo cuando el usuario envía el formulario
+        // Verificar que el formulario fue enviado por el método POST
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-            // Definimos PI como una constante
-            define("PI", 3.14159265359);
+            // Factor de conversión constante
+            define("CM_POR_PULGADA", 2.54);
 
-            // Leemos el radio ingresado por el usuario
-            $radio = $_POST['radio'];
+            // Obtener valor del formulario
+            $pulgadas = $_POST['pulgadas'];
 
-            // Validar que el radio sea positivo (Valor agregado / Validación adicional)
-            if ($radio > 0) {
-                // Fórmulas
-                $area = PI * ($radio ** 2);
-                $perimetro = 2 * PI * $radio;
+            // Validación de valor positivo (Punto 10 - Valor Agregado)
+            if ($pulgadas >= 0) {
+                // Cálculo de conversión
+                $centimetros = $pulgadas * CM_POR_PULGADA;
 
-                // Mostrar los resultados en pantalla con formato CSS
-                echo "<div class='resultado'>";
-                echo "<strong>Resultados para un radio de $radio:</strong><br>";
-                echo "Área = " . round($area, 2) . "<br>";
-                echo "Perímetro = " . round($perimetro, 2) . "<br>";
+                // Salida de resultados estructurada
+                echo "<div class='box-resultado'>";
+                echo "<strong>Resultado:</strong><br>";
+                echo "$pulgadas in equivalen a <strong>" . round($centimetros, 2) . " cm</strong>";
                 echo "</div>";
             } else {
-                echo "<div class='resultado' style='color: red;'>Por favor, ingrese un radio mayor a 0.</div>";
+                echo "<div class='box-resultado' style='color: red;'>Ingrese un valor mayor o igual a cero.</div>";
             }
         }
         ?>
