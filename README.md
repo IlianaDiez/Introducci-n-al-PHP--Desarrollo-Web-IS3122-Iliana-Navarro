@@ -7,10 +7,15 @@ Este repositorio contiene la solución a los problemas asignados en el Laborator
 Cada ejercicio implementa la interacción entre formularios HTML, estilos CSS y lógica de procesamiento en el servidor mediante PHP.
 
 Estructura del Repositorio
-laboratorio-1/
-├── problema1_circulo.php     # Cálculo de área y perímetro de un círculo usando CSS
-├── problema2_pulgadas.php    # Conversión de pulgadas a centímetros Usando CSS
-├── problema3_phpinfo.php     # Verificación de instalación de PHP
-├── problema4_cadenas.php     # Impresión y concatenación de cadenas
-├── problema5_formulario.php  # Formulario HTML (nombre y edad)
-└── README.md                 # Documentación del proyecto
+Laboratorio # 1
+Intro
+    Area y Perimetro del Circulo.php     # Cálculo de área y perímetro de un círculo (Con CSS)
+    Conversión de Pulgada a Centimetros.php # Conversión de pulgadas a centímetros (Con CSS)
+    Formulario HTML.php                  # Formulario HTML (nombre y edad)
+    OperacionesMatematicas.php           # Operaciones matemáticas en PHP
+    PHP Embebido#1.php                   # Ejemplo de PHP embebido
+    Practica1.php                        # Práctica de desarrollo
+    Problema # 3.php                     # Verificación de instalación phpinfo()
+    Problema #2.php                      # Ejercicio previo
+    Variables.php                        # Impresión y manejo de variables / cadenas
+    README.md                            # Documentación del repositorio
