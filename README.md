@@ -3,7 +3,7 @@ Laboratorio #1 - Desarrollo Web
 Instructor: Irina Fong
 Grupo: 1S3122
 
-Tecnología Utilizada
+##Tecnología Utilizada
 * PHP: Lenguaje utilizado para desarrollar los problemas prácticos.
 * HTML5: Utilizado para crear la estructura de los formularios y páginas.
 * CSS3: Utilizado para mejorar la presentación visual de los ejercicios.
