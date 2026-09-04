@@ -94,6 +94,11 @@
             $errores[] = "El nombre no puede estar vacío.";
         }
 
+        // 2.1) Validación adicional: que solo contenga letras
+        elseif (!preg_match("/^[\p{L}\s]+$/u", $nombre)) {
+            $errores[] = "El nombre solo debe contener letras (sin números ni símbolos).";
+        }
+
         // 3) Saneamiento de la edad: quitamos espacios sobrantes
         $edadInput = trim($_POST['edad'] ?? '');
 
