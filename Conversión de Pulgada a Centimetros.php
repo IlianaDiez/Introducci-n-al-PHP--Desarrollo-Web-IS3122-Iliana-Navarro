@@ -2,82 +2,105 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Conversión de Pulgadas a Centímetros</title>
-    <!-- Estilos CSS requeridos por la rúbrica -->
+    <title>Área y Perímetro de un Círculo</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
+            background-color: #f2f2f2;
             padding: 20px;
         }
-        .card {
-            background-color: #ffffff;
-            padding: 25px;
-            border-radius: 8px;
-            max-width: 420px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-        input[type="number"], input[type="submit"] {
-            padding: 10px;
-            margin-top: 8px;
+        form {
+            background-color: white;
+            padding: 15px;
             border-radius: 5px;
-            border: 1px solid #ced4da;
-            width: 95%;
+            width: 300px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 3px;
         }
         input[type="submit"] {
-            background-color: #007bff;
+            background-color: #4CAF50;
             color: white;
-            font-weight: bold;
-            cursor: pointer;
+            padding: 8px;
+            border: none;
             width: 100%;
+            cursor: pointer;
+            border-radius: 3px;
         }
-        .box-resultado {
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .resultado {
             margin-top: 15px;
-            padding: 12px;
-            background-color: #e2e3e5;
+            padding: 10px;
+            background-color: #e7f3fe;
+            border: 1px solid #b6d4fe;
+            width: 295px;
             border-radius: 5px;
+        }
+        /* Nuevo estilo para mostrar errores de validación */
+        .error {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #fdecea;
+            border: 1px solid #f5c2c0;
+            width: 295px;
+            border-radius: 5px;
+            color: #a94442;
         }
     </style>
 </head>
 <body>
+    <h2>Área y perímetro de un círculo</h2>
 
-    <div class="card">
-        <h2>Conversión de Pulgadas a Centímetros</h2>
+    <!-- Formulario para ingresar el radio -->
+    <form method="post" action="">
+        <label for="radio">Ingrese el radio del círculo:</label>
+        <input type="number" step="any" id="radio" name="radio" required min="0.01">
+        <input type="submit" value="Calcular">
+    </form>
 
-        //Formulario de entrada de datos
-        <form method="post" action="">
-            <label for="pulgadas">Ingrese la cantidad en pulgadas:</label><br>
-            <input type="number" step="any" name="pulgadas" id="pulgadas" required min="0">
-            <br><br>
-            <input type="submit" value="Convertir">
-        </form>
+    <?php
+    // Se ejecuta solo cuando el formulario se envía por POST
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-        <?php
-        // Verificar que el formulario fue enviado por el método POST
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // 1) Saneamiento: quitamos espacios en blanco sobrantes antes de validar
+        $radioInput = trim($_POST['radio'] ?? '');
 
-            // Factor de conversión constante
-            define("CM_POR_PULGADA", 2.54);
+        // 2) Validación: comprobamos que realmente sea un número
+        $radio = filter_var($radioInput, FILTER_VALIDATE_FLOAT);
 
-            // Obtener valor del formulario
-            $pulgadas = $_POST['pulgadas'];
+        if ($radio === false || $radio <= 0) {
+    
+            $valorMostrado = htmlspecialchars($radioInput, ENT_QUOTES, 'UTF-8');
+            echo "<div class='error'>";
+            echo "El valor ingresado (\"$valorMostrado\") no es un radio válido. ";
+            echo "Debe ser un número mayor que 0.";
+            echo "</div>";
+        } else {
+            // Definimos PI como constante
+            define("PI_VALOR", 3.14159265359);
 
-            // Validación de valor positivo (Punto 10 - Valor Agregado)
-            if ($pulgadas >= 0) {
-                // Cálculo de conversión
-                $centimetros = $pulgadas * CM_POR_PULGADA;
+            // Fórmulas de área y perímetro
+            $area = PI_VALOR * ($radio ** 2);
+            $perimetro = 2 * PI_VALOR * $radio;
 
-                // Salida de resultados estructurada
-                echo "<div class='box-resultado'>";
-                echo "<strong>Resultado:</strong><br>";
-                echo "$pulgadas in equivalen a <strong>" . round($centimetros, 2) . " cm</strong>";
-                echo "</div>";
-            } else {
-                echo "<div class='box-resultado' style='color: red;'>Ingrese un valor mayor o igual a cero.</div>";
-            }
+            echo "<div class='resultado'>";
+            echo "<strong>Resultados para un radio de " . htmlspecialchars($radio) . ":</strong><br>";
+            echo "Área = " . round($area, 2) . "<br>";
+            echo "Perímetro = " . round($perimetro, 2);
+            echo "</div>";
         }
-        ?>
-    </div>
-
+    }
+    ?>
 </body>
 </html>
