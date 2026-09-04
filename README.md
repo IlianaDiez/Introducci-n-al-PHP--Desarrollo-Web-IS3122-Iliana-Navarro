@@ -1,9 +1,9 @@
-# Laboratorio #1 - Desarrollo Web
+Laboratorio #1 - Desarrollo Web
 
 Instructor: Irina Fong
 Grupo: 1S3122
 
-## Tecnología Utilizada
+Tecnología Utilizada
 * PHP: Lenguaje utilizado para desarrollar los problemas prácticos.
 * HTML5: Utilizado para crear la estructura de los formularios y páginas.
 * CSS3: Utilizado para mejorar la presentación visual de los ejercicios.
@@ -11,7 +11,7 @@ Grupo: 1S3122
 * GitHub: Utilizado para almacenar el repositorio del laboratorio.
 * WampServer: Utilizado como servidor local para ejecutar y probar los archivos PHP.
 
-## Información relevante del laboratorio
+Información relevante del laboratorio
 -Durante el Laboratorio #1 - Desarrollo Web se revisaron y mejoraron los cinco problemas de código solicitados en la rúbrica. Se aplicaron validaciones de datos, saneamiento de entradas, manejo de errores, comentarios explicativos y mejoras visuales mediante CSS.
 
 ### 1. Área y Perímetro de un Círculo
